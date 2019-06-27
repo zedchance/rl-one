@@ -4,8 +4,13 @@ from entity import Entity
 from render_functions import clear_all, render_all
 
 def main():
+   # Screen size
    screen_width = 80
    screen_height = 50
+   
+   # Map size
+   map_width = 80
+   map_heigth = 45
    
    player = Entity(int(screen_width / 2), int(screen_height / 2), '@', libtcod.white)
    npc = Entity(int(screen_width / 2 - 5), int(screen_height / 2), '@', libtcod.red)
