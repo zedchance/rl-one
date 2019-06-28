@@ -4,6 +4,7 @@ from entity import Entity, get_blocking_entities_at_location
 from render_functions import clear_all, render_all
 from map_objects.game_map import GameMap
 from fov_functions import initialize_fov, recompute_fov
+from game_states import GameStates
 
 def main():
    # Screen size
@@ -56,6 +57,9 @@ def main():
    key = libtcod.Key()
    mouse = libtcod.Mouse()
    
+   # Game state
+   game_state = GameStates.PLAYERS_TURN
+   
    # Game loop
    while not libtcod.console_is_window_closed():
       libtcod.sys_check_for_event(libtcod.EVENT_KEY_PRESS, key, mouse)
@@ -76,7 +80,8 @@ def main():
       exit = action.get('exit')
       fullscreen = action.get('fullscreen')
       
-      if move:
+      # Players turn
+      if move and game_state == GameStates.PLAYERS_TURN:
          dx, dy = move
          destination_x = player.x + dx
          destination_y = player.y + dy
@@ -84,10 +89,18 @@ def main():
          if not game_map.is_blocked(destination_x, destination_y):
             target = get_blocking_entities_at_location(entities, destination_x, destination_y)
             if target:
-               print('You kick the ' + target.name + ' in the shins')
+               print('You kick the ' + target.name + ' in the shins') # Placeholder
             else:
                player.move(dx, dy)
                fov_recompute = True
+            game_state = GameStates.ENEMY_TURN
+            
+      # Enemies turn
+      if game_state == GameStates.ENEMY_TURN:
+         for entity in entities:
+            if entity != player:
+               print('The ' + entity.name + ' waits') # Placeholder
+         game_state = GameStates.PLAYERS_TURN
       
       if exit:
          return True
