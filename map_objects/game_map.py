@@ -101,10 +101,10 @@ class GameMap:
          if not any([entity for entity in entities if entity.x == x and entity.y == y]):
             # 80% chance of monster being an orc 'o'
             if randint(0, 100) < 80:
-               monster = Entity(x, y, 'o', libtcod.desaturated_green)
+               monster = Entity(x, y, 'o', libtcod.desaturated_green, 'Orc', blocks=True)
             # 20% chance of monster being strong troll 'T'
             else:
-               monster = Entity(x, y, 'T', libtcod.darker_green)
+               monster = Entity(x, y, 'T', libtcod.darker_green, 'Troll', blocks=True)
             entities.append(monster)
 
    def is_blocked(self, x, y):
