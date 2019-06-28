@@ -1,10 +1,12 @@
 import tcod as libtcod
+
 from input_handlers import handle_keys
 from entity import Entity, get_blocking_entities_at_location
 from render_functions import clear_all, render_all
 from map_objects.game_map import GameMap
 from fov_functions import initialize_fov, recompute_fov
 from game_states import GameStates
+from components.fighter import Fighter
 
 def main():
    # Screen size
@@ -34,8 +36,9 @@ def main():
       'light_ground': libtcod.Color(200, 180, 50)
    }
    
-   # Draw player and other entities
-   player = Entity(0, 0, '@', libtcod.white, 'Player', blocks=True)
+   # Setup player and entities
+   fighter_component = Fighter(hp=30, defense=2, power=5)
+   player = Entity(0, 0, '@', libtcod.white, 'Player', blocks=True, fighter=fighter_component)
    entities = [player]
    
    # Setup libtcod console
@@ -98,8 +101,8 @@ def main():
       # Enemies turn
       if game_state == GameStates.ENEMY_TURN:
          for entity in entities:
-            if entity != player:
-               print('The ' + entity.name + ' waits') # Placeholder
+            if entity.ai:
+               entity.ai.take_turn(player, fov_map, game_map, entities)
          game_state = GameStates.PLAYERS_TURN
       
       if exit:
