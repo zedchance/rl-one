@@ -2,7 +2,6 @@
 
 A roguelike game built using Python and tcod using this [tutorial](http://rogueliketutorials.com/tutorials/tcod/)
 
-
 ## Installation
 
 Make sure you have Python 3.5+
@@ -32,11 +31,22 @@ Run the `engine.py` file
 
 ## About
 
+### How to play
+
+Use arrow keys, or HJKLYUBN to move player (YUBN are diagonal movement keys, useful because enemies *will* attack you diagonally). Hover mouse over things to see info about them.
+
+### Goal
+
+TBD
+
+### Game info
+
 | Enemy name | Icon | Spawning chance | Info                      |
 | ---------- | ---- | --------------- | ------------------------- |
 | Orc        | `o`  | 80%             | 10 HP, 0 Defense, 3 Power |
 | Troll      | `T`  | 20%             | 16 HP, 1 Defense, 4 power |
 
 
-| Item name | Icon | Info |
-| --------- | ---- | ---- |
+| Item name     | Icon | Info             |
+| ------------- | ---- | ---------------- |
+| Health potion | `*`  | Heals player ... |
