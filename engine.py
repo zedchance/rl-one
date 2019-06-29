@@ -14,9 +14,14 @@ def main():
    screen_width = 80
    screen_height = 50
    
+   # HP Bar
+   bar_width = 20
+   panel_height = 7
+   panel_y = screen_height - panel_height
+   
    # Map and rooms
    map_width = 80
-   map_heigth = 45
+   map_heigth = 43
    room_max_size = 10
    room_min_size = 6
    max_rooms = 30
@@ -47,6 +52,9 @@ def main():
    libtcod.console_init_root(screen_width, screen_height, 'RL-ONE', False)
    con = libtcod.console_new(screen_width, screen_height)
    
+   # UI panel
+   panel = libtcod.console_new(screen_width, panel_height)
+   
    # Draw map
    game_map = GameMap(map_width, map_heigth)
    game_map.make_map(max_rooms, room_min_size, room_max_size, map_width, map_heigth, player, entities, max_monsters_per_room)
@@ -71,7 +79,8 @@ def main():
       if fov_recompute:
          recompute_fov(fov_map, player.x, player.y, fov_radius, fov_light_walls, fov_algorithm)
       
-      render_all(con, entities, player, game_map, fov_map, fov_recompute, screen_width, screen_height, colors)
+      render_all(con, panel, entities, player, game_map, fov_map, fov_recompute, screen_width, screen_height, 
+                 bar_width, panel_height, panel_y, colors)
       fov_recompute = False
       
       libtcod.console_flush()
