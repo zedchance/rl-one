@@ -1,3 +1,8 @@
+# RL-ONE (roguelike-one) is a roguelike game created following this tutorial:
+# http://rogueliketutorials.com/tutorials/tcod/
+#
+# Created by Zed Chance
+
 import tcod as libtcod
 
 from input_handlers import handle_keys

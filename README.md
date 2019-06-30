@@ -33,7 +33,7 @@ Run the `engine.py` file
 
 ### How to play
 
-Use arrow keys, or HJKLYUBN to move player (YUBN are diagonal movement keys, useful because enemies *will* attack you diagonally). Hover mouse over things to see info about them.
+Use arrow keys, or HJKLYUBN to move player (`@`) (YUBN are diagonal movement keys, useful because enemies *will* attack you diagonally). Hover mouse over things to see info about them.
 
 ### Goal
 
